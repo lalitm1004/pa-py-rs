@@ -5,6 +5,30 @@ from typing import NoReturn
 
 
 def panic(msg: str) -> NoReturn:
+    """
+    Terminates the program immediately after printing a structured panic report.
+
+    This function is intended as a hard failure mechanism similar to Rust's
+    `panic!()`. It prints a detailed error message to standard error, including:
+
+    - the name of the current thread
+    - the provided panic message
+    - the source location where `panic()` was invoked
+    - a formatted stack backtrace of the call frames leading to the panic
+
+    After emitting the panic report, the function exits the process with
+    `sys.exit(1)` and never returns.
+
+    Parameters:
+        msg (str):
+            A human-readable explanation of the failure condition.
+
+    Notes:
+        - `panic()` is not intended for recoverable errors; use exception handling
+          or a `Result`-style abstraction for that.
+        - Because this function terminates the entire process, it should be used
+          sparingly and only for unrecoverable, logic-error conditions.
+    """
     thread_name = threading.current_thread().name
 
     stack = traceback.extract_stack()[:-1]
