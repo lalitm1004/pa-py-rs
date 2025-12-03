@@ -1,9 +1,9 @@
 [project]
 name = "pa-py-rs"
-version = "0.1.1"
+version = "0.1.2"
 description = "A Python module that brings ergonomic, Rust-inspired utilities like Result, and panics to Python"
 readme = { file = "README.pypi.md", content-type = "text/markdown" }
-license = { file = "LICENSE" }
+license = { text = "MIT" }
 authors = [{ name = "lalitm1004", email = "lalitm1004@gmail.com" }]
 requires-python = ">=3.7"
 dependencies = []
