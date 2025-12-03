@@ -18,10 +18,10 @@ A Python module that brings ergonomic, Rust-inspired utilities like Result, and 
 
 ## Installation
 ```bash
-## using pip
+# using pip
 pip install pa-py-rs
 
-## using uv
+# using uv
 uv add pa-py-rs
 ```
 > *NOTE: Python 3.7 or higher is required*
@@ -38,22 +38,22 @@ def divide(a: float, b: float) -> Result[float, str]:
     return Ok(a / b)
 
 result = divide(10, 2)
-print(result)   ## Ok(5.0)
+print(result)   # Ok(5.0)
 if result.is_ok():
-    print(f"Success: {result.unwrap()}")    ## Success: 5.0
+    print(f"Success: {result.unwrap()}")    # Success: 5.0
 
 result = divide(10, 0)
-print(result)   ## Err(Division by zero)
+print(result)   # Err(Division by zero)
 if result.is_err():
-    print(f"Error: {result.unwrap_err()}")  ## Error: Division by zero
+    print(f"Error: {result.unwrap_err()}")  # Error: Division by zero
 ```
 
 #### Using decorators
 ```python
 from pa_py_rs import resultify, resultify_catch_only
 
-## Convert any function to return Result
-## Automatically catch errors and wrap in Err(...)
+# Convert any function to return Result
+# Automatically catch errors and wrap in Err(...)
 @resultify
 def parse_int(value: str) -> int:
     return int(value)
@@ -61,14 +61,14 @@ def parse_int(value: str) -> int:
 result = parse_int("123")   ## Ok(123)
 result = parse_int("abc")   ## Err(...)
 
-## For functions already returning Result
-## Automatically catch errors and wrap in Err(...)
+# For functions already returning Result
+# Automatically catch errors and wrap in Err(...)
 @resultify_catch_only
-def safe_divide(a: float, b: float) -> Result[float, str]:
+def divide(a: float, b: float) -> Result[float, str]:
     return Ok(a / b)
 
-result = safe_divide(10, 2)  ## Ok(5.0)
-result = safe_divide(10, 0)  ## Err("cannot divide by zero")
+result = divide(10, 2)  # Ok(5.0)
+result = divide(10, 0)  # Err("cannot divide by zero")
 ```
 
 #### Chaining Operations
@@ -76,13 +76,13 @@ result = safe_divide(10, 0)  ## Err("cannot divide by zero")
 from pa_py_rs import Ok, Err
 
 result = Err("error").unwrap_or(0)
-print(result)   ## 0
+print(result)   # 0
 
 result = (Ok(10)
     .map(lambda x: x * 2)
     .map(lambda x: x + 5)
     .unwrap())
-print(result)   ## 25
+print(result)   # 25
 ```
 
 ## Local Development

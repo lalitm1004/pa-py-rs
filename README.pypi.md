@@ -57,11 +57,11 @@ result = parse_int("abc")   # Err(...)
 # For functions already returning Result
 # Automatically catch errors and wrap in Err(...)
 @resultify_catch_only
-def safe_divide(a: float, b: float) -> Result[float, str]:
+def divide(a: float, b: float) -> Result[float, str]:
     return Ok(a / b)
 
-result = safe_divide(10, 2)  # Ok(5.0)
-result = safe_divide(10, 0)  # Err("cannot divide by zero")
+result = divide(10, 2)  # Ok(5.0)
+result = divide(10, 0)  # Err("cannot divide by zero")
 ```
 
 ### Chaining Operations
